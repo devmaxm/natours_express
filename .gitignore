@@ -1,0 +1,5 @@
+/.env
+/node_modules
+/dev-data
+/public/img/users
+/public/img/tours

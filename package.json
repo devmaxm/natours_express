@@ -1,0 +1,38 @@
+{
+  "name": "natours_express_api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon server.js",
+    "db:import": "node dev-data/data/import-dev-data.js --import",
+    "db:drop": "node dev-data/data/import-dev-data.js --delete",
+    "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
+    "build:js": "parcel build ./public/js/index.js --out-dir ./public/js --out-file bundle.js"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "axios": "^1.4.0",
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "helmet": "^7.0.0",
+    "html-to-text": "^9.0.5",
+    "jsonwebtoken": "^9.0.1",
+    "mongoose": "^7.3.3",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.4",
+    "pug": "^3.0.2",
+    "sharp": "^0.32.4",
+    "slugify": "^1.6.6",
+    "stripe": "^12.14.0",
+    "validator": "^13.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "parcel-bundler": "^1.12.5",
+    "prettier": "^3.0.0"
+  }
+}
