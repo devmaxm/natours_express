@@ -10,6 +10,7 @@ viewRouter.get('/', authController.isLoggedIn, viewsController.getOverview);
 
 viewRouter.get('/tour/:slug', authController.isLoggedIn, viewsController.getTour);
 viewRouter.get('/login', authController.isLoggedIn, viewsController.getLoginForm);
+viewRouter.get('/register', authController.isLoggedIn, viewsController.getRegisterForm);
 viewRouter.get('/me', authController.authProtect, viewsController.getAccount);
 
 viewRouter.get('/my-tours', authController.authProtect, viewsController.getMyTours);

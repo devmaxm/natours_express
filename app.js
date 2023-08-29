@@ -31,7 +31,16 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
 
 
-app.use(helmet());
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            scriptSrc: ["'self'", "https://js.stripe.com", "https://api.mapbox.com"],
+            frameSrc: ["'self'", "https://js.stripe.com"],
+            workerSrc: ["'self'", "blob:"],
+            connectSrc: ["'self'", "https://api.mapbox.com", "https://events.mapbox.com/"]
+        }
+    }
+}));
 
 // routes
 app.use('/api', router)

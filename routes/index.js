@@ -9,7 +9,7 @@ const router = Router()
 router.use('/tours', toursRouter)
 router.use('/users', usersRouter)
 router.use('/reviews', reviewsRouter)
-router.use('/booking', bookingRouter)
+router.use('/bookings', bookingRouter)
 
 
 module.exports = router
