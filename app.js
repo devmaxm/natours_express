@@ -1,5 +1,7 @@
 const path = require('path');
 const express = require('express')
+const https = require('https')
+const fs = require('fs')
 
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
@@ -13,6 +15,12 @@ const globalErrorHandler = require('./controllers/errorController')
 
 
 const app = express()
+
+const options = {
+    key: fs.readFileSync('./private.key'),
+    cert: fs.readFileSync('./certificate.crt')
+};
+
 
 
 app.enable('trust proxy');
@@ -37,12 +45,17 @@ app.use(helmet({
             scriptSrc: ["'self'", "https://js.stripe.com", "https://api.mapbox.com"],
             frameSrc: ["'self'", "https://js.stripe.com"],
             workerSrc: ["'self'", "blob:"],
-            connectSrc: ["'self'", "https://api.mapbox.com", "https://events.mapbox.com/"]
+            connectSrc: ["'self'", "https://api.mapbox.com", "https://events.mapbox.com/"],
         }
     }
 }));
 
 // routes
+app.get('/get_img/:img_type/:img_name', (req, res) => {
+    const {img_type, img_name} = req.params
+    const filePath = path.join(__dirname, 'public/img', img_type, img_name);
+    return res.sendFile(filePath)
+})
 app.use('/api', router)
 app.use('', viewRouter)
 app.all('*', (req, res, next) => {
@@ -51,4 +64,6 @@ app.all('*', (req, res, next) => {
 
 app.use(globalErrorHandler)
 
-module.exports = app
+const server = https.createServer(options, app);
+
+module.exports = server
